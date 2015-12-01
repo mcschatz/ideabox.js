@@ -5,6 +5,9 @@ class Api::V1::IdeasController < ApplicationController
     respond_with Idea.all
   end
 
+  def create
+    respond_with Idea.create(idea_params)
+  end
   private
 
     def idea_params
