@@ -1,5 +1,6 @@
 $(document).ready(function () {
   getIdeas()
+  createIdeas()
 });
 
 function getIdeas() {
@@ -18,3 +19,25 @@ function getIdeas() {
     }
   });
 };
+
+function createIdeas(){
+  $('#create-idea').on('click', function(){
+    var ideaTitle = $('#idea-title').val();
+    var ideaBody = $('#idea-body').val();
+    var ideaParams      = {
+      idea: {
+        title: ideaTitle,
+        body: ideaBody
+      }
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/ideas',
+      data: ideaParams,
+      success: function(idea){
+        getIdeas()
+      }
+    })
+  })
+}
