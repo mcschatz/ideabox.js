@@ -9,13 +9,14 @@ function getIdeas() {
     url: '/api/v1/ideas',
     success: function(response) {
       var ideaElements = $.map (response, function (idea, index) {
-        var ideaProperties = $('<li></li>')
-        .append("<h3>" + idea.title + "</h3>")
-        .append("<h5>" + idea.body + "</h5>")
-        .append("<h5>" + idea.quality + "</h5>");
+        var ideaProperties = $(".ideas-list").prepend(
+          "<h3>" + idea.title + "</h3>"
+          + "<h5>" + idea.body + "</h5>"
+          + "<h5>" + idea.quality + "</h5>"
+          + "<input class='btn btn-default' id='delete-idea' type='button' name='submit' value='Delete Idea'>"
+        )
         return ideaProperties;
       });
-      $(".ideas-list").html(ideaElements);
     }
   });
 };
@@ -31,13 +32,17 @@ function createIdeas(){
       }
     }
 
+  $('idea-title').val('')
+  $('idea-body').val('')
+
     $.ajax({
       type: 'POST',
-      url: '/api/v1/ideas',
+      url: '/api/v1/ideas.json',
       data: ideaParams,
-      success: function(idea){
+      success: function(){
         getIdeas()
       }
-    })
+    });
+    $('form').trigger('reset');
   })
 }
