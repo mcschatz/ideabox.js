@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: ideabox_development
+
+test:
+  <<: *default
+  database: ideabox_test
+
+production:
+  <<: *default
+  database: ideabox_production
+  username: ideabox
+  password: <%= ENV['IDEABOX_DATABASE_PASSWORD'] %>
