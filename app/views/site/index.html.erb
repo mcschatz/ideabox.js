@@ -1,11 +1,26 @@
-<h1>IdeaBox</h1>
-<h3>Ideas</h3>
-<ul class="ideas-list"></ul>
-<div class="form-group">
-  <form>
-    <input class="form-control" type="text" id="idea-title">
-    <input class="form-control" type="text" id="idea-body">
-  </form>
+<div class="container">
+  <div class="row">
+    <div class="column center">
+      <h2>IdeaBox</h2>
+      <h4>Great Ideas Start Here</h4>
+    </div>
+  </div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="idea-title" type="text" class="validate">
+          <label for="title">Title</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="idea-body" type="text" class="validate">
+          <label for="description">Description</label>
+        </div>
+        <div class="row col s12">
+            <input class="btn btn-default" id="create-idea" type="button" name="submit" value="Save Idea">
+        </div>
+      </div>
+    </form>
+  </div>
+  <ul class="collection" id="ideas-list"></ul>
 </div>
-<br>
-<input class="btn btn-default" id="create-idea" type="button" name="submit" value="Save Idea">
