@@ -17,14 +17,18 @@ function renderIdeas(idea) {
   $('#ideas-list').prepend(
     "<li class='collection-item idea' data-id='" + idea.id
     + "'><div class='row'>"
-    + "<p>Title: "
+    + "<p contentEditable='true' class='idea-title'>"
     + idea.title
-    + "</p><p>Description: "
+    + "</p>"
+    + "<p contentEditable='true' class='idea-body'>"
     + idea.body
     + "</p><p>Quality: "
     + idea.quality
-    + "</p></div><i class='material-icons' id='delete-idea'>delete</i></li>"
+    + "</p>"
+    + "<a class='secondary-content'><i class='material-icons' id='delete-idea'>delete</i></li></a></div>"
   )
+  editTitle();
+  editBody();
 };
 
 function createIdea(){
@@ -78,11 +82,71 @@ function searchIdeas() {
     var input = $('#search').val().toLowerCase();
 
     $('.idea').each(function (index, idea) {
-      var title = $(idea).find('h2').text().toLowerCase();
+      var title = $(idea).find('p').text().toLowerCase();
       var body = $(idea).find('p').text().toLowerCase();
 
       var isMatching = (title + body).indexOf(input) !== -1;
       $(idea).toggle(isMatching);
     });
   });
+}
+
+function editTitle() {
+  $('.idea-title').keydown(function (event) {
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      var $input = event.currentTarget.textContent;
+      var $idea = $(this).closest('.idea');
+      var ideaParams  = {
+        idea: {
+          title: $input
+        }
+      }
+
+      $.ajax({
+        type: 'PUT',
+        url:  '/api/v1/ideas/'
+        + $idea.attr('data-id')
+        + '.json',
+        data: ideaParams,
+        success: function(){
+          $(event.target).blur();
+          getIdeas();
+        },
+        error: function(){
+          console.log('You title cannot be blank.');
+        }
+      });
+    }
+  });
+}
+
+function editBody() {
+  $('.idea-body').keydown(function (event) {
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      var $input = event.currentTarget.textContent;
+      var $idea = $(this).closest('.idea');
+      var ideaParams  = {
+        idea: {
+          body: $input
+        }
+      }
+
+      $.ajax({
+        type: 'PUT',
+        url:  '/api/v1/ideas/'
+        + $idea.attr('data-id')
+        + '.json',
+        data: ideaParams,
+        success: function(){
+          $(event.target).blur();
+          getIdeas();
+        },
+        error: function(){
+          console.log('There was an error with your input. Try again.')
+        }
+      })
+    }
+  })
 }
