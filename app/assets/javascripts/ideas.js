@@ -2,6 +2,7 @@ $(document).ready(function () {
   getIdeas();
   createIdea();
   deleteIdea();
+  searchIdeas();
 });
 
 function getIdeas(){
@@ -22,7 +23,7 @@ function renderIdeas(idea) {
     + idea.body
     + "</p><p>Quality: "
     + idea.quality
-    + "</div><i class='material-icons' id='delete-idea'>delete</i></li>"
+    + "</p></div><i class='material-icons' id='delete-idea'>delete</i></li>"
   )
 };
 
@@ -70,4 +71,18 @@ function deleteIdea() {
       }
     })
   })
+}
+
+function searchIdeas() {
+  $('#search').keyup(function() {
+    var input = $('#search').val().toLowerCase();
+
+    $('.idea').each(function (index, idea) {
+      var title = $(idea).find('h2').text().toLowerCase();
+      var body = $(idea).find('p').text().toLowerCase();
+
+      var isMatching = (title + body).indexOf(input) !== -1;
+      $(idea).toggle(isMatching);
+    });
+  });
 }
