@@ -14,7 +14,8 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def update
-    respond_with :api, :v1, Idea.update(params[:id], idea_params)
+    @idea = Idea.update(params[:id], idea_params)
+    respond_with @idea, json: @idea
   end
 
   private
