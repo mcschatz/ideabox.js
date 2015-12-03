@@ -12,5 +12,6 @@ class UserCanCreateAnIdeaTest < ActionDispatch::IntegrationTest
     fill_in "idea-body", with: "Name"
     click_on("Save Idea")
     assert page.has_content?("Last")
+    assert 4, Idea.all.count
   end
 end

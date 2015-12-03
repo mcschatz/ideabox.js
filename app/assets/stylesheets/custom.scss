@@ -1,15 +1,19 @@
 .idea-title {
   outline-width: thin;
-  outline-color: teal;
+  outline-color: #1a237e;
 }
 
 .idea-body {
   outline-width: thin;
-  outline-color: teal;
+  outline-color: #1a237e;
 }
 
 .card-title:hover {
-  color: teal;
+  color: #1a237e;
+}
+
+.btn {
+  background-color: #1a237e;
 }
 
 .idea-body:hover {
@@ -17,7 +21,7 @@
 }
 
 #increase-quality:hover {
-  color: teal;
+  color: #1a237e;
 }
 
 #increase-quality {
@@ -30,19 +34,20 @@
 }
 
 #delete-idea {
-  color: teal;
+  color: #1a237e;
 }
 
 .nav-wrapper {
-  background-color: #4f174f;
+  background-color: white;
 }
+
 #decrease-quality:hover {
   color: teal;
 }
 
 body {
-  background-color:  #4f174f;
-  color: white;
+  background-color: #e0f7fa;
+  color: black;
 }
 
 .idea {
