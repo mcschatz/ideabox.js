@@ -33,7 +33,7 @@ function renderIdeas(idea) {
   editTitle();
   editBody();
   increaseQuality();
-  // decreaseQuality;
+  decreaseQuality();
 };
 
 function createIdea(){
@@ -171,7 +171,35 @@ function increaseQuality() {
         quality: thumbsUpMap[$quality]
       }
     }
-    debugger
+
+    $.ajax({
+      type: 'PUT',
+      url: '/api/v1/ideas/'
+      + $idea.attr('data-id')
+      + '.json',
+      data: ideaParams,
+      success: function(){
+        getIdeas();
+      }
+    });
+  });
+}
+
+function decreaseQuality() {
+  $('#decrease-quality').on('click', function(event){
+    var $idea = $(this).closest('.idea');
+    var $quality = $($idea).attr('data-quality');
+    var thumbsDownMap = {
+      Genius: "Plausible",
+      Plausible: "Swill",
+      Swill: "Swill"
+    }
+
+    var ideaParams = {
+      idea: {
+        quality: thumbsDownMap[$quality]
+      }
+    }
 
     $.ajax({
       type: 'PUT',
