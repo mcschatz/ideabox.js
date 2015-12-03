@@ -36,4 +36,16 @@ class IdeaTest < ActiveSupport::TestCase
     assert_equal true, idea.save
     assert_equal false, secondidea.save
   end
+
+  test "it must have a title" do
+    idea = Idea.create(body: "steve", quality: 2)
+
+    assert_equal false, idea.save
+  end
+
+   test "it must have a body" do
+    idea = Idea.create(title: "steve", quality: 2)
+
+    assert_equal false, idea.save
+  end
 end
