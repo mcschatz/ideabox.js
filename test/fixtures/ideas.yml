@@ -1,0 +1,14 @@
+one:
+  title: First One
+  body: Happy
+  quality: 1
+
+two:
+  title: Second One
+  body: Silly
+  quality: 2
+
+three:
+  title: Thrid One
+  body: FINISHED
+  quality: 0
