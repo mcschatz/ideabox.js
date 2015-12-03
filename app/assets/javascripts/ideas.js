@@ -15,12 +15,12 @@ function getIdeas(){
 
 function renderIdeas(idea) {
   $('#ideas-list').prepend(
-    "<li class='collection-item idea' data-id='" + idea.id
+    "<div class='card idea' data-id='" + idea.id
     + "' data-quality='" + idea.quality
-    + "'><div class='row'>"
-    + "<p contentEditable='true' class='idea-title'>"
+    + "'><div class='card-content'>"
+    + "<span class='card-title'><p contentEditable='true' class='idea-title'>"
     + idea.title
-    + "</p>"
+    + "</p></span>"
     + "<p contentEditable='true' class='idea-body'>"
     + idea.body
     + "</p><p>Quality: "
@@ -28,7 +28,7 @@ function renderIdeas(idea) {
     + "</p>"
     + "<i class='material-icons' id='increase-quality'>thumb_up</i>"
     + "<i class='material-icons' id='decrease-quality'>thumb_down</i>"
-    + "<a class='secondary-content'><i class='material-icons' id='delete-idea'>delete</i></li></a></div>"
+    + "<i class='material-icons' id='delete-idea'>delete</i></a></div></div>"
   )
   editTitle();
   editBody();
@@ -47,8 +47,8 @@ function createIdea(){
       }
     }
 
-  $('idea-title').val('')
-  $('idea-body').val('')
+    $('idea-title').val('')
+    $('idea-body').val('')
 
     $.ajax({
       type: 'POST',
@@ -114,9 +114,9 @@ function editTitle() {
         + $idea.attr('data-id')
         + '.json',
         data: ideaParams,
-        success: function(){
+        success: function(idea){
           $(event.target).blur();
-          getIdeas();
+          updateTitle($idea, idea.title);
         },
         error: function(){
           console.log('You title cannot be blank.');
@@ -124,6 +124,10 @@ function editTitle() {
       });
     }
   });
+}
+
+function updateTitle(idea, title){
+  $(idea).find('.idea-title').html(title);
 }
 
 function editBody() {
@@ -144,9 +148,9 @@ function editBody() {
         + $idea.attr('data-id')
         + '.json',
         data: ideaParams,
-        success: function(){
+        success: function(idea){
           $(event.target).blur();
-          getIdeas();
+          updateBody($idea, idea.body);
         },
         error: function(){
           console.log('There was an error with your input. Try again.')
@@ -154,6 +158,10 @@ function editBody() {
       })
     }
   })
+}
+
+function updateBody(idea, body){
+  $(idea).find('.idea-body').html(body);
 }
 
 function increaseQuality() {
@@ -178,9 +186,9 @@ function increaseQuality() {
       + $idea.attr('data-id')
       + '.json',
       data: ideaParams,
-      success: function(){
-        $idea.remove()
-        getIdeas();
+      success: function(idea){
+        $idea.remove();
+        renderIdeas(idea);
       }
     });
   });
@@ -208,9 +216,9 @@ function decreaseQuality() {
       + $idea.attr('data-id')
       + '.json',
       data: ideaParams,
-      success: function(){
-        $idea.remove()
-        getIdeas();
+      success: function(idea){
+        $idea.remove();
+        renderIdeas(idea);
       }
     });
   });
