@@ -16,13 +16,4 @@
 @import "materialize/components/color";
 $primary-color: color("teal", "lighten-2") !default;
 @import "materialize";
-
-.idea-title {
-  outline-width: thin;
-  outline-color: red;
-}
-
-.idea-body {
-  outline-width: thin;
-  outline-color: red;
-}
+@import "custom";
