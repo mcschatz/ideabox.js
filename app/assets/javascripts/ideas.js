@@ -179,6 +179,7 @@ function increaseQuality() {
       + '.json',
       data: ideaParams,
       success: function(){
+        $idea.remove()
         getIdeas();
       }
     });
@@ -208,6 +209,7 @@ function decreaseQuality() {
       + '.json',
       data: ideaParams,
       success: function(){
+        $idea.remove()
         getIdeas();
       }
     });
