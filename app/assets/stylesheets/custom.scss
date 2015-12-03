@@ -1,19 +1,21 @@
+$highlight-text-color: #1a237e;
+
 .idea-title {
   outline-width: thin;
-  outline-color: #1a237e;
+  outline-color: $highlight-text-color;
 }
 
 .idea-body {
   outline-width: thin;
-  outline-color: #1a237e;
+  outline-color: $highlight-text-color;
 }
 
 .card-title:hover {
-  color: #1a237e;
+  color: $highlight-text-color;
 }
 
 .btn {
-  background-color: #1a237e;
+  background-color: $highlight-text-color;
 }
 
 .idea-body:hover {
@@ -21,7 +23,7 @@
 }
 
 #increase-quality:hover {
-  color: #1a237e;
+  color: $highlight-text-color;
 }
 
 #increase-quality {
@@ -34,7 +36,7 @@
 }
 
 #delete-idea {
-  color: #1a237e;
+  color: $highlight-text-color;
 }
 
 .nav-wrapper {
@@ -42,7 +44,7 @@
 }
 
 #decrease-quality:hover {
-  color: teal;
+  color: $highlight-text-color;
 }
 
 body {
