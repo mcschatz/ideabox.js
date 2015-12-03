@@ -1,4 +1,4 @@
-$highlight-text-color: #1a237e;
+$highlight-text-color: #4db6ac;
 
 .idea-title {
   outline-width: thin;
@@ -16,6 +16,7 @@ $highlight-text-color: #1a237e;
 
 .btn {
   background-color: $highlight-text-color;
+  font-weight: bold;
 }
 
 .idea-body:hover {
@@ -40,7 +41,7 @@ $highlight-text-color: #1a237e;
 }
 
 .nav-wrapper {
-  background-color: $highlight-text-color;
+  background-color: #eceff1;
 }
 
 #decrease-quality:hover {
@@ -48,8 +49,8 @@ $highlight-text-color: #1a237e;
 }
 
 body {
-  background-color: #e0f7fa;
-  color: black;
+  background-color: #4f174f;
+  color: white;
 }
 
 .idea {
