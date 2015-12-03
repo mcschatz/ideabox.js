@@ -16,6 +16,7 @@ function getIdeas(){
 function renderIdeas(idea) {
   $('#ideas-list').prepend(
     "<li class='collection-item idea' data-id='" + idea.id
+    + "' data-quality='" + idea.quality
     + "'><div class='row'>"
     + "<p contentEditable='true' class='idea-title'>"
     + idea.title
@@ -25,10 +26,14 @@ function renderIdeas(idea) {
     + "</p><p>Quality: "
     + idea.quality
     + "</p>"
+    + "<i class='material-icons' id='increase-quality'>thumb_up</i>"
+    + "<i class='material-icons' id='decrease-quality'>thumb_down</i>"
     + "<a class='secondary-content'><i class='material-icons' id='delete-idea'>delete</i></li></a></div>"
   )
   editTitle();
   editBody();
+  increaseQuality();
+  // decreaseQuality;
 };
 
 function createIdea(){
@@ -149,4 +154,34 @@ function editBody() {
       })
     }
   })
+}
+
+function increaseQuality() {
+  $('#increase-quality').on('click', function(event){
+    var $idea = $(this).closest('.idea');
+    var $quality = $($idea).attr('data-quality');
+    var thumbsUpMap = {
+      Genius: "Genius",
+      Plausible: "Genius",
+      Swill: "Plausible"
+    }
+
+    var ideaParams = {
+      idea: {
+        quality: thumbsUpMap[$quality]
+      }
+    }
+    debugger
+
+    $.ajax({
+      type: 'PUT',
+      url: '/api/v1/ideas/'
+      + $idea.attr('data-id')
+      + '.json',
+      data: ideaParams,
+      success: function(){
+        getIdeas();
+      }
+    });
+  });
 }
