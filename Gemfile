@@ -14,6 +14,10 @@ gem "responders"
 group :development, :test do
   gem 'pry'
   gem 'simplecov'
+  gem 'capybara'
+  gem 'mocha'
+  gem 'selenium-webdriver'
+  gem 'launchy'
 end
 
 group :development do
