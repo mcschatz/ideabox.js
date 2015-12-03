@@ -1,29 +1,34 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="row">
+      <form class="col s2">
+        <div class="input">
+          <input placeholder="Search" id="search" type="search" required>
+          <label for="search-query"></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="row">
     <div class="column center">
-      <h2>Thought Pour</h2>
-      <h4>Let your thoughts pour out</h4>
+      <h2>ThoughtPour</h2>
     </div>
   </div>
   <div class="row">
     <form class="col s12">
-      <div class="input-field">
-        <input placeholder="Search by Idea Title, Description, or Quality" id="search" type="search" required>
-        <label for="search-query"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
+      <div class="column center">
+        <h5>What's on your mind?</h5>
       </div>
-    </form>
-  </div>
-  <div class="row">
-    <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
           <input id="idea-title" type="text" class="validate">
-          <label for="title">Title</label>
+          <label for="title">Idea title?</label>
         </div>
         <div class="input-field col s6">
           <input id="idea-body" type="text" class="validate">
-          <label for="description">Description</label>
+          <label for="description">Describe it!</label>
         </div>
         <div class="row col s12">
             <input class="btn btn-default" id="create-idea" type="button" name="submit" value="Save Idea">
@@ -31,5 +36,5 @@
       </div>
     </form>
   </div>
-  <ul class="collection" id="ideas-list"></ul>
+  <div id="ideas-list"></div>
 </div>
