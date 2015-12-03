@@ -23,7 +23,7 @@ function renderIdeas(idea) {
     + "</p></span>"
     + "<p contentEditable='true' class='idea-body'>"
     + idea.body
-    + "</p><p>Quality: "
+    + "</p><p class='quality'>Quality: "
     + idea.quality
     + "</p>"
     + "<i class='material-icons' id='increase-quality'>thumb_up</i>"
@@ -187,8 +187,7 @@ function increaseQuality() {
       + '.json',
       data: ideaParams,
       success: function(idea){
-        $idea.remove();
-        renderIdeas(idea);
+        updateQuality($idea, idea.quality);
       }
     });
   });
@@ -217,9 +216,13 @@ function decreaseQuality() {
       + '.json',
       data: ideaParams,
       success: function(idea){
-        $idea.remove();
-        renderIdeas(idea);
+        updateQuality($idea, idea.quality);
       }
     });
   });
+}
+
+function updateQuality(idea, quality){
+  $(idea).find('.quality').html('Quality: ' + quality);
+  $(idea).attr('data-quality', quality);
 }
