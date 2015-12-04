@@ -34,4 +34,16 @@ class Api::V1::Ideas::IdeasControllerTest < ActionController::TestCase
     assert_equal "Third One", idea[:title]
     assert_equal 2, Idea.count
   end
+
+  test "should create an idea" do
+    idea = {title: "What up", body: "mobile app"}
+
+    assert_equal 3, Idea.count
+
+    post :create, format: :json, idea: idea
+    idea = JSON.parse(response.body, symbolize_names: true)
+
+    assert_equal "What up", idea[:title]
+    assert_equal 4, Idea.count
+  end
 end
