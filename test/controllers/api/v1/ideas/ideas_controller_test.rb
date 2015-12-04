@@ -21,4 +21,17 @@ class Api::V1::Ideas::IdeasControllerTest < ActionController::TestCase
     idea = JSON.parse(response.body, symbolize_names: true)
     assert_equal "New one", idea[:title]
   end
+
+  test "should delete an idea" do
+    idea = Idea.find("113629430")
+
+    assert_equal "Third One", idea.title
+    assert_equal 3, Idea.count
+
+    delete :destroy, format: :json, id: Idea.first.id
+    idea = JSON.parse(response.body, symbolize_names: true)
+
+    assert_equal "Third One", idea[:title]
+    assert_equal 2, Idea.count
+  end
 end

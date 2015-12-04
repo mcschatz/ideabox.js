@@ -10,7 +10,8 @@ class Api::V1::Ideas::IdeasController < ApplicationController
   end
 
   def destroy
-    respond_with Idea.destroy(params[:id])
+    @idea = Idea.destroy(params[:id])
+    respond_with @idea, json: @idea
   end
 
   def update

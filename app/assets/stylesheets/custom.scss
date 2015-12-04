@@ -10,6 +10,10 @@ $highlight-text-color: #4db6ac;
   outline-color: $highlight-text-color;
 }
 
+.idea-body:hover {
+  color: $highlight-text-color;
+}
+
 .card-title:hover {
   color: $highlight-text-color;
 }
@@ -17,10 +21,6 @@ $highlight-text-color: #4db6ac;
 .btn {
   background-color: $highlight-text-color;
   font-weight: bold;
-}
-
-.idea-body:hover {
-  color: #3333FF;
 }
 
 #increase-quality:hover {
